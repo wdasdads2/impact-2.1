@@ -6,17 +6,18 @@ on:
 
 jobs:
   test:
-    runs_on: ubuntu_latest
+    runs-on: ubuntu_latest
     steps:
       - name: Downoload the code
-      uses: actions/checkout@v4
-      - name : Install Python
-      uses: actions/setup-python@v5
-      with:
-         python-version "3.11"
-      - name :install requirements
+        uses: actions/checkout@v4
+      - name : Set Up Python
+        uses: actions/setup-python@v5
+        with:
+         python-version: "3.11"
+      - name: Install requirements
         run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-      -name: Run test
-      rin: pytest
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; thrn pip install -r requirements.txt; fi
+          pip install pytest
+      - name: Run tests
+        run: pytest -v 
